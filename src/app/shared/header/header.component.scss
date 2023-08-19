@@ -1,0 +1,39 @@
+@import "src/assets/styles/variables";
+
+header.header {
+  padding: 20px 0 20px 0;
+  background: rgba(0, 0, 0, 0.36);
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .header-content__title {
+        h3 {
+          margin-bottom: 0;
+          font-family: $font-NothingYou;
+          cursor: pointer;
+        }
+      }
+      .header-content__authorization {
+        a {
+          display: flex;
+          align-items: flex-end;
+          cursor: pointer;
+        span {
+          margin-left: 5px;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          color: black;
+        }
+        }
+      }
+    }
+  }
+}

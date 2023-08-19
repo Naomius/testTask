@@ -1,0 +1,18 @@
+<table class="table">
+  <div class="container">
+  <thead>
+  <tr>
+    <th>Номер</th>
+    <th>Пост</th>
+    <th>Описание</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let post of postsArticles | async">
+    <td>{{post.id}}</td>
+    <td><a [routerLink]="['/post', post.id]">{{post.title}}</a></td>
+    <td>{{post.body}}</td>
+  </tr>
+  </tbody>
+  </div>
+</table>
