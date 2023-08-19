@@ -19,6 +19,9 @@ export class LoginComponent {
               private router: Router,
               private _snakeBar: MatSnackBar,
               private authService: AuthService) {
+    this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
+      this.isLogged = isLoggedIn;
+    })
   }
 
   loginForm = this.fb.group({
@@ -36,8 +39,8 @@ export class LoginComponent {
     }
     if (this.loginForm.valid && this.loginForm.value.email && this.loginForm.value.password
       && this.loginForm.value.rememberMe) {
-      this.authService.setInfo(userInformation)
-      this._snakeBar.open('Вы успешно зарегистрировались');
+      this.authService.getInfo(userInformation)
+      this._snakeBar.open('Вы успешно авторизовались');
       this.router.navigate(['/posts'])
     }
   }

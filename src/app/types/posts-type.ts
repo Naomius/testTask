@@ -5,7 +5,7 @@ export type PostsType = {
   body: string
 }
 
-export type  PostType = {
+export type PostType = {
   userId: number,
   id: number,
   title: string,

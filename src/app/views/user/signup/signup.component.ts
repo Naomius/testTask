@@ -45,7 +45,7 @@ export class SignupComponent {
         && this.signupForm.value.password && this.signupForm.value.passwordRepeat) {
         this.authService.setInfo(userInformation)
         this._snackBar.open('Вы успешно зарегистрировались');
-        this.router.navigate(['/posts'])
+        this.router.navigate(['/login'])
     }
   }
 

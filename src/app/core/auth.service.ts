@@ -16,18 +16,6 @@ export class AuthService {
     this.isLogged = !!localStorage.getItem(this.userInfoKey);
   }
 
-
-  // addUser(user: UserInfoType): void {
-  //   let users = [];
-  //   if (localStorage.getItem('Users')) {
-  //     users = JSON.parse(localStorage.getItem('Users')!);
-  //     users = [user, ...users];
-  //   } else {
-  //     users = [user];
-  //   }
-  //   localStorage.setItem('Users', JSON.stringify(users))
-  // }
-
   login() {
     this.isLogged = true;
     this.isLogged$.next(this.isLogged);
@@ -51,9 +39,7 @@ export class AuthService {
     return this.isLogged;
   }
 
-
-
-  public getInfo(): {userInfo: string | null} {
+  public getInfo(userInfo: UserLoginType): {userInfo: string | null} {
     return {
       userInfo: localStorage.getItem(this.userInfoKey),
     };

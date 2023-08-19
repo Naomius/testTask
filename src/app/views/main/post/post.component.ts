@@ -11,7 +11,7 @@ import {Subscription, switchMap} from "rxjs";
 })
 export class PostComponent implements OnInit, OnDestroy{
 
-  post!: PostType;
+  post: PostType = {} as PostsType;
   private subscription: Subscription | null = null;
 
   constructor(private router: Router,
@@ -27,7 +27,7 @@ export class PostComponent implements OnInit, OnDestroy{
         switchMap((params: Params) => this.postService.getPost(params['id']))
       )
       .subscribe({
-        next: (data: PostsType) => {
+        next: (data: PostType) => {
           this.post = data;
         },
         error: (error) => {
