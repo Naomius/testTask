@@ -23,8 +23,8 @@ import {SharedModule} from "./shared/shared.module";
     SharedModule,
     BrowserAnimationsModule,
     MatMenuModule,
-    AppRoutingModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}

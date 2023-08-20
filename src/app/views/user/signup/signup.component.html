@@ -8,55 +8,55 @@
         </div>
         <div class="auth-inputs">
           <div class="auth-input">
-            <input type="text"
-                   [ngStyle]="{'border-color': signupForm.get('name')?.invalid
-                    && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched) ? 'red' : ''}"
+            <input type="text" AutoFocus
+                   [ngStyle]="{'border-color': userName.invalid
+                    && (userName.dirty || userName.touched) ? 'red' : ''}"
                    placeholder="Имя" formControlName="name">
           </div>
-          <div *ngIf="signupForm.get('name')?.invalid && (signupForm.get('name')?.touched || signupForm.get('name')?.dirty)">
-            <div class="invalid-feedback" *ngIf="signupForm.get('name')?.errors?.['required']">
+          <div *ngIf="userName.invalid && (userName.touched || userName.dirty)">
+            <div class="invalid-feedback" *ngIf="userName.errors?.['required']">
               <em>Необходимо ввести ваше Имя</em>
             </div>
-            <div class="invalid-feedback" *ngIf="signupForm.get('name')?.errors?.['pattern']">
+            <div class="invalid-feedback" *ngIf="userName.errors?.['pattern']">
               <em>Необходимо ввести только русские буквы</em>
             </div>
           </div>
 
           <div class="auth-input">
             <input type="text"
-                   [ngStyle]="{'border-color': signupForm.get('email')?.invalid
-                    && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched) ? 'red' : ''}"
+                   [ngStyle]="{'border-color': userEmail.invalid
+                    && (userEmail.dirty || userEmail.touched) ? 'red' : ''}"
                    placeholder="Электронная почта" formControlName="email">
           </div>
-          <div *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)">
-            <div class="invalid-feedback" *ngIf="signupForm.get('email')?.errors?.['required']">
+          <div *ngIf="userEmail.invalid && (userEmail.touched || userEmail.dirty)">
+            <div class="invalid-feedback" *ngIf="userEmail.errors?.['required']">
               <em>Необходимо ввести ваш email</em>
             </div>
           </div>
 
           <div class="auth-input">
             <input type="password"
-                   [ngStyle]="{'border-color': signupForm.get('password')?.invalid
-                   && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched) ? 'red' : ''}"
+                   [ngStyle]="{'border-color': userPassword.invalid
+                   && (userPassword.dirty || userPassword.touched) ? 'red' : ''}"
                    placeholder="Пароль" formControlName="password">
           </div>
-          <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.touched || signupForm.get('password')?.dirty)">
-            <div class="invalid-feedback" *ngIf="signupForm.get('password')?.errors?.['required']">
+          <div *ngIf="userPassword.invalid && (userPassword.touched || userPassword.dirty)">
+            <div class="invalid-feedback" *ngIf="userPassword.errors?.['required']">
               <em>Необходимо ввести ваш пароль</em>
             </div>
-            <div class="invalid-feedback" *ngIf="signupForm.get('password')?.errors?.['pattern']">
+            <div class="invalid-feedback" *ngIf="userPassword.errors?.['pattern']">
               <em>Пароль должен быть не менее 8 символов, содержать как минимум 1 букву в верхнем регистре и как минимум 1 цифру</em>
             </div>
           </div>
 
           <div class="auth-input">
             <input type="password"
-                   [ngStyle]="{'border-color': signupForm.get('passwordRepeat')?.invalid
-                   && (signupForm.get('passwordRepeat')?.dirty || signupForm.get('passwordRepeat')?.touched) ? 'red' : ''}"
+                   [ngStyle]="{'border-color': userPasswordRepeat.invalid
+                   && (userPasswordRepeat.dirty || userPasswordRepeat.touched) ? 'red' : ''}"
                    placeholder="Повторите пароль" formControlName="passwordRepeat">
           </div>
-          <div *ngIf="signupForm.get('passwordRepeat')?.invalid && (signupForm.get('passwordRepeat')?.touched || signupForm.get('passwordRepeat')?.dirty)">
-            <div class="invalid-feedback" *ngIf="signupForm.get('passwordRepeat')?.errors?.['required']">
+          <div *ngIf="userPasswordRepeat.invalid && (userPasswordRepeat.touched || userPasswordRepeat.dirty)">
+            <div class="invalid-feedback" *ngIf="userPasswordRepeat.errors?.['required']">
               <em>Необходимо ввести пароль еще раз</em>
             </div>
             <div class="invalid-feedback" *ngIf="signupForm.controls.passwordRepeat.value !== signupForm.controls.password.value">

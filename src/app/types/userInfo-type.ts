@@ -10,7 +10,3 @@ export type UserLoginType = {
   password: string,
 }
 
-export type UserRealType = {
-  userId: string,
-  userInfo: string,
-}

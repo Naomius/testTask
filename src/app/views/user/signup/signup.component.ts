@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -14,7 +14,6 @@ export class SignupComponent {
 
   isLogged: boolean = false;
   user!: UserInfoType;
-  inputsArray = {};
 
 
   constructor(private fb: FormBuilder,
@@ -35,6 +34,7 @@ export class SignupComponent {
   })
 
   signup(): void {
+
     const userInformation = this.user = {
             name: this.userName.value,
             email: this.userEmail.value,
@@ -46,7 +46,7 @@ export class SignupComponent {
             && this.signupForm.value.password && this.signupForm.value.passwordRepeat) {
       this.authService.setInfo(userInformation)
       this._snackBar.open('Вы успешно зарегистрировались');
-      this.router.navigate(['/login'])
+      this.router.navigate(['/posts'])
     }
 
   }

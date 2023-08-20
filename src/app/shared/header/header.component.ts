@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {AuthService} from "../../core/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
@@ -9,10 +9,10 @@ import {UserInfoType} from "../../types/userInfo-type";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit, DoCheck{
 
   isLogged: boolean = false;
-  UserInfo!: UserInfoType;
+  userName: string | null = '';
 
   constructor(private authService: AuthService,
               private _snackBar: MatSnackBar,
@@ -21,26 +21,29 @@ export class HeaderComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    let userObject = JSON.parse(localStorage.getItem('users')!)
-    this.UserInfo = userObject.find((item: UserInfoType) => item.name)
-    console.log(this.UserInfo)
     this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
       this.isLogged = isLoggedIn;
     })
   }
 
-
-  logOut() {
-    this.authService.logOut()
-    this.doLogout()
+  name() {
+    if (localStorage.length !== 0) {
+      const userInfo = this.authService.getInfo()
+        return this.userName = userInfo.name
+    }
   }
 
+
   doLogout(): void {
-    this.authService.removeLocalInfo();
+    this.authService.logOut();
     this._snackBar.open('Вы вышли из системы');
     setTimeout(() => {
       this.router.navigate(['/login']);
     },500)
+  }
+
+  ngDoCheck(): void {
+    this.name()
   }
 
 }

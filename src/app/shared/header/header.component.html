@@ -15,12 +15,12 @@
             <path d="M12.123 8.28955L15.3335 11.5L12.123 14.7104" stroke="#202B21" stroke-width="1.5"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span *ngIf="UserInfo" class="activeSpan">Привет, {{UserInfo.name}} !</span>
+          <span *ngIf="userName" class="activeSpan">Привет, {{userName}} !</span>
         </a>
 
         <mat-menu #menu="matMenu">
           <button mat-menu-item>
-            <span (click)="logOut()">Выйти</span>
+            <span (click)="doLogout()">Выйти</span>
           </button>
         </mat-menu>
 
@@ -30,6 +30,7 @@
             <path d="M18.7398 19.3801C16.9598 21.0101 14.5998 22.0001 11.9998 22.0001C9.39977 22.0001 7.03977 21.0101 5.25977 19.3801C5.35977 18.4401 5.95977 17.5201 7.02977 16.8001C9.76977 14.9801 14.2498 14.9801 16.9698 16.8001C18.0398 17.5201 18.6398 18.4401 18.7398 19.3801Z" stroke="#202B21" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#202B21" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
+          <span routerLink="/login">Привет, Гость</span>
         </a>
       </div>
     </div>

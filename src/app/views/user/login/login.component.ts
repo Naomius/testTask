@@ -1,21 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {Component} from '@angular/core';
+import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "../../../core/auth.service";
-import {UserInfoType, UserLoginType} from "../../../types/userInfo-type";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent{
 
   isLogged: boolean = false;
-  user!: UserLoginType;
-  storageInfo!: UserInfoType
-  // user = {};
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -33,46 +29,20 @@ export class LoginComponent implements OnInit{
   })
 
 
-
   login(): void {
-    const userInformation = this.user = {
-      email: this.userEmail.value,
-      password: this.userPassword.value,
-    }
     if (this.loginForm.valid && this.loginForm.value.email && this.loginForm.value.password
       && this.loginForm.value.rememberMe) {
-      // this.authService.getInfo(userInformation)
-      let users = JSON.parse(localStorage.getItem('users') || 'false');
-      this.user = users.find((user: UserLoginType) => user.email === userInformation.email)
+      const userInfo = this.authService.getInfo();
+      console.log(userInfo)
 
-      if (!this.user) {
-        this._snakeBar.open('Не верные данные');
-        return;
+      if (this.loginForm.value.email === userInfo.email && this.loginForm.value.password === userInfo.password) {
+        this.authService.login();
+        this._snakeBar.open('Вы успешно авторизовались');
+        this.router.navigate(['/posts'])
       } else {
-        if (this.user.password !== userInformation.password) {
-          this._snakeBar.open('Не верные данные');
-          return;
-        }
+        this._snakeBar.open('Необходимо зарегистрироваться');
       }
-
-      this._snakeBar.open('Вы успешно авторизовались');
-      this.router.navigate(['/posts'])
-
-
     }
-  }
-
-
-  get userEmail() {
-    return this.loginForm.get('email') as FormControl;
-  }
-  get userPassword() {
-    return this.loginForm.get('password') as FormControl;
-  }
-
-  ngOnInit(): void {
-    // this.storageInfo = JSON.parse(localStorage.getItem('userInfo') || 'false')
-    // console.log(this.storageInfo.email)
   }
 
 }

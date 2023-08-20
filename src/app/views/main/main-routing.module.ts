@@ -6,7 +6,6 @@ import {PostComponent} from "./post/post.component";
 const routes: Routes = [
   {path: 'posts', component: PostsComponent},
   {path: 'post/:id', component: PostComponent},
-  // {path: '**', redirectTo: '/login'}
 ];
 
 @NgModule({

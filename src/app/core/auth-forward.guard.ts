@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthService} from "./auth.service";
 import {Location} from "@angular/common";
@@ -10,7 +10,8 @@ import {Location} from "@angular/common";
 export class AuthForwardGuard implements CanActivate {
 
   constructor(private authService: AuthService,
-              private location: Location) {
+              private location: Location,
+              private router: Router) {
   }
 
   canActivate(
