@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../core/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {UserInfoType} from "../../types/userInfo-type";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit{
 
   isLogged: boolean = false;
-  UserInfo = JSON.parse(localStorage.getItem('userInfo')!)
+  UserInfo!: UserInfoType;
 
   constructor(private authService: AuthService,
               private _snackBar: MatSnackBar,
@@ -20,7 +21,9 @@ export class HeaderComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.UserInfo = JSON.parse(localStorage.getItem('userInfo')!)
+    let userObject = JSON.parse(localStorage.getItem('users')!)
+    this.UserInfo = userObject.find((item: UserInfoType) => item.name)
+    console.log(this.UserInfo)
     this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
       this.isLogged = isLoggedIn;
     })

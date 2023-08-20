@@ -14,6 +14,7 @@ export class SignupComponent {
 
   isLogged: boolean = false;
   user!: UserInfoType;
+  inputsArray = {};
 
 
   constructor(private fb: FormBuilder,
@@ -33,20 +34,21 @@ export class SignupComponent {
     rememberMe: [false, [Validators.requiredTrue]]
   })
 
-
   signup(): void {
-      const userInformation = this.user = {
-        name: this.userName.value,
-        email: this.userEmail.value,
-        password: this.userPassword.value,
-        passwordRepeat: this.userPasswordRepeat.value,
-      }
+    const userInformation = this.user = {
+            name: this.userName.value,
+            email: this.userEmail.value,
+            password: this.userPassword.value,
+            passwordRepeat: this.userPasswordRepeat.value,
+          }
+
     if (this.signupForm.valid && this.signupForm.value.name && this.signupForm.value.email
-        && this.signupForm.value.password && this.signupForm.value.passwordRepeat) {
-        this.authService.setInfo(userInformation)
-        this._snackBar.open('Вы успешно зарегистрировались');
-        this.router.navigate(['/login'])
+            && this.signupForm.value.password && this.signupForm.value.passwordRepeat) {
+      this.authService.setInfo(userInformation)
+      this._snackBar.open('Вы успешно зарегистрировались');
+      this.router.navigate(['/login'])
     }
+
   }
 
 

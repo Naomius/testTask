@@ -7,7 +7,7 @@ import {UserInfoType, UserLoginType} from "../types/userInfo-type";
 })
 export class AuthService {
 
-  public userInfoKey = 'userInfo';
+  public userInfoKey = 'users';
 
   public isLogged$: Subject<boolean> = new Subject<boolean>();
   public isLogged: boolean = false;
@@ -16,15 +16,15 @@ export class AuthService {
     this.isLogged = !!localStorage.getItem(this.userInfoKey);
   }
 
-  login() {
-    this.isLogged = true;
-    this.isLogged$.next(this.isLogged);
-  }
-
-  signup() {
-    this.isLogged = true;
-    this.isLogged$.next(this.isLogged);
-  }
+  // login() {
+  //   this.isLogged = true;
+  //   this.isLogged$.next(this.isLogged);
+  // }
+  //
+  // signup() {
+  //   this.isLogged = true;
+  //   this.isLogged$.next(this.isLogged);
+  // }
 
   logOut() {
     this.isLogged = false;
@@ -46,7 +46,16 @@ export class AuthService {
   }
 
   public setInfo(userInfo: UserInfoType | UserLoginType): void {
-    localStorage.setItem(this.userInfoKey, JSON.stringify(userInfo));
+    let users = localStorage.getItem('users');
+    if (users) {
+      let usersArray = JSON.parse(users);
+      usersArray.push(userInfo);
+      localStorage.setItem('users', JSON.stringify(usersArray));
+    } else {
+      let usersArray = [];
+      usersArray.push(userInfo);
+      localStorage.setItem('users', JSON.stringify(usersArray))
+    }
     this.isLogged = true;
     this.isLogged$.next(true);
   }
