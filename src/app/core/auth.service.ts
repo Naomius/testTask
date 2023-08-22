@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {UserLoginType} from "../types/userInfo-type";
 
@@ -12,7 +12,6 @@ export class AuthService {
   authUser$: BehaviorSubject<UserLoginType | null> = new BehaviorSubject<UserLoginType | null>(null)
 
   constructor() {
-    //Нужно для того, после обновления страницы понимать, что пользователь уже авторизован
     const user = localStorage.getItem(USER_KEY);
       if (user) {
         this.authUser$.next(JSON.parse(user));
