@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService, USERS_KEY} from "../../../core/auth.service";
-import {UserInfoType, UserLoginType} from "../../../types/userInfo-type";
+import {UserLoginType} from "../../../types/userInfo-type";
 
 @Component({
   selector: 'app-signup',
@@ -11,10 +11,6 @@ import {UserInfoType, UserLoginType} from "../../../types/userInfo-type";
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
-
-  isLogged: boolean = false;
-  user!: UserInfoType;
-
 
   constructor(private fb: FormBuilder,
               private router: Router,

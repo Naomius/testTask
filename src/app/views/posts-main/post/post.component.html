@@ -1,6 +1,6 @@
 <section class="post">
   <div class="container">
-    <div class="post-item">
+    <div class="post-item" *ngIf="post.title; else loading">
     <h2 class="post-item__title">{{post.title}}</h2>
       <div class="post-item__text">{{post.body}}</div>
       <div class="post-item__button">
@@ -8,4 +8,7 @@
       </div>
     </div>
   </div>
+  <ng-template #loading>
+    <div id="loader"></div>
+  </ng-template>
 </section>

@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="header-content">
+    <div class="header-content__title">
+      <h3>Тестовое задание</h3>
+      <nav class="header-content__title-nav">
+        <ul>
+          <li><a routerLink="/posts" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Посты</a></li>
+          <li><a routerLink="/main" routerLinkActive="active">Главная</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header-content__authorization">
+
+      <div class="profile" *ngIf="authUser" [matMenuTriggerFor]="menu">
+        <img class="profile__img" src="assets/images/enter.svg" alt="img">
+        <div class="profile__name">{{authUser.name}}</div>
+      </div>
+
+      <mat-menu #menu="matMenu">
+        <button (click)="doLogout()" mat-menu-item>
+          Выйти
+        </button>
+      </mat-menu>
+
+      <div class="profile" *ngIf="!authUser" routerLink="/login">
+        <img class="profile__img" src="assets/images/enter.svg" alt="img">
+        <div class="profile__name">Гость</div>
+      </div>
+    </div>
+  </div>
+</div>
+

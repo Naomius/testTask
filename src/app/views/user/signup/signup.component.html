@@ -1,4 +1,4 @@
-<section class="signup" [formGroup]="signupForm" passwordRepeat>
+<form class="signup" [formGroup]="signupForm" passwordRepeat>
   <div class="container">
     <div class="auth-form">
       <div class="auth-form__left">
@@ -58,7 +58,7 @@
             <div class="invalid-feedback" *ngIf="userPasswordRepeat.errors?.['required']">
               <em>Необходимо ввести пароль еще раз</em>
             </div>
-            <div class="invalid-feedback" *ngIf="signupForm.controls.passwordRepeat.value !== signupForm.controls.password.value">
+            <div class="invalid-feedback" *ngIf="userPasswordRepeat.value !== userPasswordRepeat.value">
               <em>Пароли должны совпадать</em>
             </div>
           </div>
@@ -68,7 +68,7 @@
             <label for="remember">Запомнить меня</label>
           </div>
           <div class="auth-button">
-            <button class="button" [disabled]="signupForm.invalid" (click)="signup()">Войти</button>
+            <button class="button" type="submit" [disabled]="signupForm.invalid" (click)="signup()">Войти</button>
           </div>
           <div class="auth-link">
             Уже есть аккаунт? <a routerLink="/login">Войдите</a>
@@ -80,4 +80,4 @@
       </div>
     </div>
   </div>
-</section>
+</form>

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../core/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
-import {UserLoginType} from "../../types/userInfo-type";
+import {AuthService} from "../../../core/auth.service";
+import {UserLoginType} from "../../../types/userInfo-type";
 
 @Component({
   selector: 'app-header',

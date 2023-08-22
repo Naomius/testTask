@@ -1,6 +1,6 @@
 <div class="filter">
   <label class="filter__title" for="filter__input">Фильтр</label>
-  <input class="filter__input input" id="filter__input" type="text" placeholder="Введите название"
+  <input AutoFocus class="filter__input input" id="filter__input" type="text" placeholder="Введите название"
          [(ngModel)]="searchString"
          (ngModelChange)="filterPosts()"
   >
