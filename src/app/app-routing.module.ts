@@ -6,11 +6,12 @@ import {AuthLoginGuard} from "./core/auth-login.guard";
 import {Page404Component} from "./shared/components/page404/page404.component";
 
 const routes: Routes = [
+  {path: '', redirectTo: '/main', pathMatch: 'full'},
   {
     path: '',
     component: LayoutComponent,
     children: [
-      {path: '', loadChildren: () => import('./views/main/main.module').then(m => m.MainModule), canActivate: [AuthGuard]},
+      {path: '', loadChildren: () => import('./views/main/main.module').then(m => m.MainModule)},
       {path: '', loadChildren: () => import('./views/posts-main/posts.module').then(m => m.PostsModule), canActivate: [AuthGuard]},
       {path: '', loadChildren: () => import('./views/user/user.module').then(m => m.UserModule), canActivate: [AuthLoginGuard]},
     ]

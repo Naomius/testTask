@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PostService} from "../../../shared/services/post.service";
 import {PostsType} from "../../../types/posts-type";
-import {Subscription} from "rxjs";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-posts',
@@ -9,12 +9,13 @@ import {Subscription} from "rxjs";
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit, OnDestroy{
-
-  postsArticles: PostsType[] = [];
-  filteredPostsList: PostsType[] = [];
+  posts: PostsType[] = [];
+  postsCopy: PostsType[] = [];
 
   searchString = '';
   error = '';
+
+  isLoading = false;
 
   newsPostSub!: Subscription;
 
@@ -22,35 +23,41 @@ export class PostsComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
+    this.getPosts();
+  }
+
+  getPosts(): void {
+    this.isLoading = true;
     this.newsPostSub = this.postService.getPosts()
       .subscribe( {
-        next: (postArticles: PostsType[]) => {
-          this.postsArticles = postArticles
+        next: (posts: PostsType[]) => {
+          this.posts = this.postsCopy = posts;
+          this.isLoading = false;
         },
         error: (error) => {
-          this.error = error.message
+          this.error = error.message;
+          this.isLoading = false;
         }
-  });
+      });
   }
 
   filterPosts(str: string): void {
     if (str.trim()) {
       this.searchString = str;
-      this.filteredPostsList = this.postsArticles.filter(news => news.title.toLocaleLowerCase().includes(str.toLowerCase()));
+      this.posts = this.postsCopy.filter(news => news.title.toLocaleLowerCase().includes(str.toLowerCase()));
     } else {
-      this.searchString = str;
-      this.filteredPostsList = [];
+      this.cleanInput();
     }
   }
 
   cleanInput(): void {
     this.searchString = '';
-    this.filteredPostsList = [];
+    this.posts = this.postsCopy;
   }
 
   ngOnDestroy(): void {
     if (this.newsPostSub) {
-      this.newsPostSub.unsubscribe();
+      this.newsPostSub?.unsubscribe();
     }
   }
 

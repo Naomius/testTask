@@ -1,24 +1,24 @@
 <div class="container">
-  <div class="error text-center"
-       *ngIf="error; else postsListBlock"
-  >
+  <div class="error text-center" *ngIf="error">
     {{error}}
   </div>
 
-  <ng-template #postsListBlock>
-    <app-filter
-      (onFilterPosts)="filterPosts($event)"
-      (onCleanInput)="cleanInput()"
-      [searchString]="searchString"
-    >
-    </app-filter>
+  <ng-container *ngIf="!error">
+    <div *ngIf="isLoading" id="loader"></div>
 
-    <ng-container *ngIf="postsArticles.length; else loading">
-      <p class="filter-error" *ngIf="searchString.length > 0 && filteredPostsList.length === 0; else postsListBlock">
+    <ng-container *ngIf="!isLoading">
+      <app-filter
+        (onFilterPosts)="filterPosts($event)"
+        (onCleanInput)="cleanInput()"
+        [searchString]="searchString"
+      >
+      </app-filter>
+
+      <p class="filter-error" *ngIf="searchString.length > 0 && posts.length === 0; else tablePosts">
         К сожалению, по запросу "{{searchString}}" ничего не найдено.
       </p>
 
-      <ng-template #postsListBlock>
+      <ng-template #tablePosts>
         <table class="table" >
           <thead>
           <tr>
@@ -28,7 +28,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let post of (filteredPostsList.length ? filteredPostsList : postsArticles)">
+          <tr *ngFor="let post of posts">
             <td>{{post.id}}</td>
             <td><a [routerLink]="['/post', post.id]">{{post.title}}</a></td>
             <td>{{post.body}}</td>
@@ -37,10 +37,5 @@
         </table>
       </ng-template>
     </ng-container>
-  </ng-template>
-
-  <ng-template #loading>
-    <div id="loader"></div>
-  </ng-template>
-
+  </ng-container>
 </div>

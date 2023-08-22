@@ -14,6 +14,7 @@ export class PostComponent implements OnInit, OnDestroy{
 
   post: PostsType = {} as PostsType;
   private subscription: Subscription | null = null;
+  isLoading = false;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -23,6 +24,10 @@ export class PostComponent implements OnInit, OnDestroy{
 
 
   ngOnInit(): void {
+    this.getPost();
+  }
+
+  getPost(): void {
     this.subscription = this.activatedRoute.params
       .pipe(
         switchMap((params: Params) => this.postService.getPost(params['id']))

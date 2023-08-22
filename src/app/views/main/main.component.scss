@@ -1,9 +1,13 @@
 .main {
-  padding-top: 200px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
   .container {
 
     h1 {
+      margin: 0;
       text-transform: uppercase;
       letter-spacing: 5px;
     }
