@@ -4,6 +4,6 @@
          [(ngModel)]="searchString"
          (ngModelChange)="filterPosts()"
   >
-  <button class="btn btn-primary filter__clean-btn" (click)="cleanInput()">Сбросить</button>
+  <button class="btn btn-primary filter__clean-btn" [disabled]="!searchString" (click)="cleanInput()">Сбросить</button>
 </div>
 
