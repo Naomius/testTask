@@ -4,6 +4,12 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  height: 100vh;
+
 }
 
 .invalid-feedback {
@@ -11,5 +17,127 @@ html, body {
   padding: 0 0 10px 0;
 }
 
+.filter-error {
+  margin: 3rem 0 0 22rem !important;
+  font-family: $font-JosefinSans;
+  font-size: 22px;
+}
+
+#loader {
+  display: block;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #9370DB;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #BA55D3;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #FF00FF;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+  }
+
+  @-webkit-keyframes spin {
+    0%   {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin {
+    0%   {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.input {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  border: 1px solid gray;
+  border-radius: .25rem;
+  transition: .2s ease-out;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 .75rem rgba(0, 0, 0, 0.5);
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: .5rem 1.5rem;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+
+  border: 1px solid gray;
+  border-radius: .25rem;
+  background-color: white;
+  color: grey;
+
+  cursor: pointer;
+  transition: .2s ease-out;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    box-shadow: 0 0 .75rem rgba(0, 0, 0, 0.5);
+  }
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: rgba(255, 0, 0, 0.78);
+  color: white;
+}
 
 

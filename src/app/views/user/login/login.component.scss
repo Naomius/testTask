@@ -1,8 +1,8 @@
 @import "src/assets/styles/authForm";
 
 .login {
-  padding-top: 100px;
-  padding-bottom: 161px;
+  height: 100%;
+  display: flex;
   background: #1e1e1e;
 
   .container {
@@ -11,9 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .auth-form__title {
-      margin-bottom: 90px;
-    }
+
     .auth-button {
       margin-bottom: 40px !important;
     }

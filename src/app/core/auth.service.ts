@@ -1,52 +1,43 @@
 import { Injectable } from '@angular/core';
-import {Subject} from "rxjs";
-import {UserInfoType, UserLoginType} from "../types/userInfo-type";
+import {BehaviorSubject} from "rxjs";
+import {UserLoginType} from "../types/userInfo-type";
+
+export const USERS_KEY = 'users';
+export const USER_KEY = 'user'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  public userInfo = 'users';
-  public isLogged$: Subject<boolean> = new Subject<boolean>();
-  public isLogged: boolean = false;
+  authUser$: BehaviorSubject<UserLoginType | null> = new BehaviorSubject<UserLoginType | null>(null)
 
   constructor() {
-    this.isLogged = !!localStorage.getItem(this.userInfo);
+    //Нужно для того, после обновления страницы понимать, что пользователь уже авторизован
+    const user = localStorage.getItem(USER_KEY);
+      if (user) {
+        this.authUser$.next(JSON.parse(user));
+      }
   }
 
-  login(): void {
-    this.isLogged = true;
-    this.isLogged$.next(this.isLogged);
+  login(user: UserLoginType): void {
+    this.authUser$.next(user);
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+
+  signup(user: UserLoginType): void {
+    const users = localStorage.getItem(USERS_KEY);
+    const usersList: UserLoginType[] = users ? JSON.parse(users) : [];
+    usersList.push(user);
+    localStorage.setItem(USERS_KEY, JSON.stringify(usersList));
+    this.login(user);
   }
 
   logOut(): void {
-    this.isLogged = false;
-    this.isLogged$.next(this.isLogged);
+    this.authUser$.next(null);
+    localStorage.removeItem(USER_KEY);
   }
 
-  public getIsLoggedIn() {
-    return this.isLogged;
+  userIsAuthorized(): boolean {
+    return !!this.authUser$.value
   }
-
-  public getInfo() {
-    let users = JSON.parse(localStorage.getItem('users') || 'false');
-    return users.find((item: UserInfoType) => item.email)
-  }
-
-  public setInfo(userInfo: UserInfoType | UserLoginType): void {
-    let users = localStorage.getItem('users');
-    if (users) {
-      let usersArray = JSON.parse(users);
-      usersArray.push(userInfo);
-      localStorage.setItem('users', JSON.stringify(usersArray));
-    } else {
-      let usersArray = [];
-      usersArray.push(userInfo);
-      localStorage.setItem('users', JSON.stringify(usersArray))
-    }
-    this.isLogged = true;
-    this.isLogged$.next(true);
-  }
-
 }

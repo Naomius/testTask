@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {AuthService} from "../../../core/auth.service";
-import {UserInfoType} from "../../../types/userInfo-type";
+import {AuthService, USERS_KEY} from "../../../core/auth.service";
+import {UserInfoType, UserLoginType} from "../../../types/userInfo-type";
 
 @Component({
   selector: 'app-signup',
@@ -20,9 +20,6 @@ export class SignupComponent {
               private router: Router,
               private _snackBar: MatSnackBar,
               private authService: AuthService) {
-    this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
-      this.isLogged = isLoggedIn;
-    })
   }
 
   signupForm = this.fb.group({
@@ -34,21 +31,25 @@ export class SignupComponent {
   })
 
   signup(): void {
-
-    const userInformation = this.user = {
+    const user: UserLoginType = {
             name: this.userName.value,
             email: this.userEmail.value,
-            password: this.userPassword.value,
-            passwordRepeat: this.userPasswordRepeat.value,
-          }
+            password: this.userPassword.value
+          };
 
-    if (this.signupForm.valid && this.signupForm.value.name && this.signupForm.value.email
-            && this.signupForm.value.password && this.signupForm.value.passwordRepeat) {
-      this.authService.setInfo(userInformation)
+    if (this.signupForm.valid) {
+      const users = localStorage.getItem(USERS_KEY);
+      const usersList: UserLoginType[] = users ? JSON.parse(users) : [];
+      const emailIsAlreadyTaken = !!usersList.find(user => user.email === this.userEmail.value)
+
+    if (emailIsAlreadyTaken) {
+      this._snackBar.open('Пользователь с таким email уже существует');
+      return;
+    }
+    this.authService.signup(user);
       this._snackBar.open('Вы успешно зарегистрировались');
       this.router.navigate(['/posts'])
     }
-
   }
 
 

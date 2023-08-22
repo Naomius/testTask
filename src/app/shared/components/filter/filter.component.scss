@@ -1,0 +1,54 @@
+
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem 0 2rem 22rem;
+
+  @media screen and (min-width: 768px) {
+    justify-content: normal;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-weight: 500;
+
+    @media screen and (min-width: 576px) {
+      flex-basis: 15%;
+    }
+
+    @media screen and (min-width: 768px) {
+      flex-basis: auto;
+      margin-right: 1rem;
+    }
+  }
+
+  &__input {
+    flex-basis: 100%;
+    order: 3;
+    margin-top: 1rem;
+
+    @media screen and (min-width: 576px) {
+      flex-basis: 60%;
+      margin-top: 0;
+      order: 0;
+    }
+
+    @media screen and (min-width: 768px) {
+      flex-basis: auto;
+      margin-right: 1rem;
+    }
+  }
+
+  &__clean-btn {
+    @media screen and (min-width: 576px) {
+      flex-basis: 20%;
+      margin-bottom: 0;
+    }
+
+    @media screen and (min-width: 768px) {
+      flex-basis: auto;
+    }
+  }
+}

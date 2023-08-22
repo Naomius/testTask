@@ -1,8 +1,8 @@
 @import "src/assets/styles/authForm";
 
 .signup {
-  padding-top: 100px;
-  padding-bottom: 63px;
+  height: 100%;
+  display: flex;
   background: #1e1e1e;
 
   .container {
@@ -11,8 +11,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .auth-form__title {
-      margin-bottom: 30px;
-    }
   }
 }

@@ -41,5 +41,4 @@ export class PostComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
-
 }

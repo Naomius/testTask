@@ -4,11 +4,10 @@
       <div class="auth-form__left">
         <div class="auth-form__title">
           <h1>Регистрация</h1>
-          <p>Добро пожаловать в наше приложение</p>
         </div>
         <div class="auth-inputs">
           <div class="auth-input">
-            <input type="text" AutoFocus
+            <input type="text"
                    [ngStyle]="{'border-color': userName.invalid
                     && (userName.dirty || userName.touched) ? 'red' : ''}"
                    placeholder="Имя" formControlName="name">

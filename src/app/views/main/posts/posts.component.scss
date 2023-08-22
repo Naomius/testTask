@@ -1,73 +1,69 @@
+.container {
+  height: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+}
+
 .table {
-  margin-top: 50px;
-  width: 100%;
+  overflow: auto;
+  height: 80%;
+  display: block;
   border-collapse: collapse;
-  border: 1px solid var(--grey-color);
-  font-size: 13px;
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    border: 1px solid black;
-    @media screen and (min-width: 360px) {
-      font-size: 14px;
+  border: 1px solid #333;
+
+  @media screen and (min-width: 360px) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: 400px) {
+    font-size: 18px;
+  }
+
+  tr {
+    font-weight: 500;
+    font-size: 16px;
+    transition: .2s ease-out;
+
+    &:nth-child(even) {
+      background: #f4f4f4;
     }
 
-    @media screen and (min-width: 400px) {
-      font-size: 16px;
+    &:nth-child(odd) {
+      background: #ffffff;
     }
 
-    tr {
-      transition: .2s ease-out;
+    &:hover {
+      background: linear-gradient(90deg, #b9deed, #efefef);
+    }
 
-      &:nth-child(even) {
-        background: rgba(211, 198, 198, 0.25);
+    th {
+      padding: 5px 2px;
+
+      background: #cccccc;
+      border-bottom: 1px solid #333;
+
+      @media screen and (min-width: 576px) {
+        padding: 5px;
       }
 
-      &:nth-child(odd) {
-        background: white;
+      @media screen and (min-width: 768px) {
+        padding: 5px 15px;
+      }
+    }
+
+    td {
+      padding: 5px 2px;
+
+      @media screen and (min-width: 576px) {
+        padding: 5px;
       }
 
-      &:hover {
-        background: linear-gradient(90deg, #b9deed, #efefef);
-      }
-
-      th {
-        padding: 5px 2px;
-
-        background: rgba(140, 132, 132, 0.66);
-        border-bottom: 1px solid var(--grey-color);
-
-        @media screen and (min-width: 576px) {
-          padding: 5px;
-        }
-
-        @media screen and (min-width: 768px) {
-          padding: 5px 15px;
-        }
-      }
-
-      td {
-        padding: 5px 2px;
-
-        &:not(:first-child) {
-          text-align: center;
-        }
-
-        @media screen and (min-width: 576px) {
-          padding: 5px;
-        }
-
-        @media screen and (min-width: 768px) {
-          padding: 5px 15px;
-        }
-        a {
-          color: cornflowerblue;
-          text-decoration: none;
-        }
+      @media screen and (min-width: 768px) {
+        padding: 5px 15px;
       }
     }
   }
-
-
-
 }
