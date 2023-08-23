@@ -14,9 +14,9 @@
       >
       </app-filter>
 
-      <p class="filter-error" *ngIf="searchString.length > 0 && posts.length === 0; else tablePosts">
+      <div class="filter-error" *ngIf="searchString.length > 0 && posts.length === 0; else tablePosts">
         К сожалению, по запросу "{{searchString}}" ничего не найдено.
-      </p>
+      </div>
 
       <ng-template #tablePosts>
         <table class="table" >
